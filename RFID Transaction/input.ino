@@ -1,6 +1,7 @@
 void input()
 {
 inp = "";
+customKey = ' ';
 const byte ROWS = 4; 
 const byte COLS = 4; 
 
@@ -23,5 +24,6 @@ while(customKey!='#')
   Serial.print(customKey);
 }
 inp.remove('#');
+check = 0;
 Serial.println();
 }

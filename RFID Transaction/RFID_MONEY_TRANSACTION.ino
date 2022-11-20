@@ -10,14 +10,17 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
 String pts = "";
 String inp="";
 char customKey = ' ';
+int custom_pts = 0;
+//String custom_pts = "";
 int balance_pts = 0;
 int deduct_pts = 0;
-String deduct_ptss = "";
+String deduct_ptss = "-1";
 int new_balance_pts = 0;
 String new_balance_ptss = "";
 String ch = "";
-int choice = 0;
-
+int choice = -1;
+int check = -1;
+int transc = -1;
 void setup() 
 {
   Serial.begin(9600);        // Initialize serial communications with the PC
@@ -32,18 +35,22 @@ void loop()
   Serial.println(".....PRESS '3' TO MAKE TRANSACTION.....");
   Serial.println();
 
-  while(Serial.available() == 0)
-  {}
-
-  ch = inp;
-  choice = ch.toInt();
+//  while(Serial.available() == 0)
+//  {}
+//
+//  ch = Serial.readStringUntil('#');
+  while(choice==-1)
+  {
+      input();
+      choice = inp.toInt();
+  }
 
   switch(choice)
   {
     case 1:
     Serial.println("PLACE CARD ON SCANNER TO ADD UNP  #");
     delay(3000);
-    write_unp();
+    write_new_unp();
     Serial.println("UNP ADDED");
     delay(1000);
     Serial.println("REMOVE CARD");
@@ -76,18 +83,30 @@ void loop()
     Serial.println("PLACE CARD ON SCANNER TO MAKE TRANSACTION");
     delay(3000);
     read_write_new_unp();
-    Serial.println("TRANSACTION MADE SUCCESSFULLY");
-    delay(1000);
-    Serial.println("REMOVE CARD");
-    Serial.println();
-    delay(3000);
-    break;
-
+    if(transc == 0)
+    {
+      Serial.println("TRANSACTION WAS UNSUCCESSFUL");
+      delay(1000);
+      Serial.println("REMOVE CARD");
+      Serial.println();
+      delay(3000);
+    }
+    else
+    {
+      Serial.println("TRANSACTION MADE SUCCESSFULLY");
+      delay(1000);
+      Serial.println("REMOVE CARD");
+      Serial.println();
+      delay(3000);
+      break;
+    }
     default :
     Serial.println("INVALID CHOICE");
     Serial.println();
     break; 
   }
   pts=""; // this line is very important
-
+  choice = -1;
+  check = -1;
+  transc = -1;
 }

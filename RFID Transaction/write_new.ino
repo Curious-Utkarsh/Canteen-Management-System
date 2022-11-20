@@ -1,4 +1,4 @@
-void read_write_new_unp()
+void write_new_unp()
 {
   //FIRST WE READ HERE
   
@@ -57,26 +57,27 @@ void read_write_new_unp()
     }
   }
   //Serial.print(" ");
-  balance_pts = pts.toInt();
+  custom_pts = pts.toInt();
 
   //Serial.println(F("\n**End Reading**\n"));
 
   delay(1000); //change value if you want to read cards faster
+  Serial.setTimeout(20000L) ;     // wait until 20 seconds for input from serial
+  // Ask Points to Enter
+  Serial.println(F("Enter UNP Points to be Added, ending with #"));
+  input();
+  
+  new_balance_pts = int(custom_pts + inp.toInt());
 
-  new_balance_pts = int(balance_pts - deduct_pts);
-//  Serial.println(new_balance_pts);
-  if(new_balance_pts < 0)
-  {
-    Serial.println("NOT ENOUGH UNP!");
-//    Serial.println(new_balance_pts);
-    transc = 0;
-    mfrc522.PICC_HaltA(); // Halt PICC
-    mfrc522.PCD_StopCrypto1();  // Stop encryption on PCD
-  }
+//  if(new_balance_pts < 0)
+//  {
+//    Serial.println("NOT ENOUGH UNP!");
+//    return;
+//  }
   //HERE WE WRITE AFTER READING
-  else{
+  
   byte buffer[34];
-  Serial.println(new_balance_pts);
+  
   new_balance_ptss = String(new_balance_pts);
   len = new_balance_ptss.length();
   len = len+1;
@@ -129,5 +130,4 @@ void read_write_new_unp()
   //Serial.println(" ");
   mfrc522.PICC_HaltA(); // Halt PICC
   mfrc522.PCD_StopCrypto1();  // Stop encryption on PCD
-}
 }
