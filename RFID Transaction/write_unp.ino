@@ -25,7 +25,9 @@ void write_unp()
   // Ask Points to Enter
   Serial.println(F("Enter UNP Points to be Added, ending with #"));
   input();
-  len = inp.readBytesUntil('#', (char *) buffer, 20) ; // read first name from serial
+  len = inp.length() ; // read first name from serial
+  len = len+1;
+  inp.getBytes((char*) buffer,len);
   //Serial.print("Len: ");
   //Serial.println(String(len));
   //Serial.println(len);
