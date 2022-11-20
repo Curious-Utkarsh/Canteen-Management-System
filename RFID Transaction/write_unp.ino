@@ -24,7 +24,8 @@ void write_unp()
   Serial.setTimeout(20000L) ;     // wait until 20 seconds for input from serial
   // Ask Points to Enter
   Serial.println(F("Enter UNP Points to be Added, ending with #"));
-  len = Serial.readBytesUntil('#', (char *) buffer, 20) ; // read first name from serial
+  input();
+  len = inp.readBytesUntil('#', (char *) buffer, 20) ; // read first name from serial
   //Serial.print("Len: ");
   //Serial.println(String(len));
   //Serial.println(len);
