@@ -1,4 +1,4 @@
-void write_unp()
+void write_new_unp()
 {
   //FIRST WE READ HERE
   
@@ -10,8 +10,19 @@ void write_unp()
   byte block;
   byte len;
   MFRC522::StatusCode status;
-
-
+  Serial.println("ENTERED HERE");
+  // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+//  if ( ! mfrc522.PICC_IsNewCardPresent()) 
+//  {
+//    return;
+//  }
+  Serial.println("ENTERED HERE");
+  // Select one of the cards
+  if ( ! mfrc522.PICC_ReadCardSerial()) 
+  {
+    return;
+  }
+  Serial.println("ENTERED HERE");
   //Serial.println(F("**Card Detected:**"));
 
   byte buffer1[18];
@@ -46,7 +57,7 @@ void write_unp()
     }
   }
   //Serial.print(" ");
-  balance_pts = pts.toInt();
+  custom_pts = pts.toInt();
 
   //Serial.println(F("\n**End Reading**\n"));
 
@@ -55,10 +66,14 @@ void write_unp()
   // Ask Points to Enter
   Serial.println(F("Enter UNP Points to be Added, ending with #"));
   input();
-  deduct_pts = inp.toInt();
-  new_balance_pts = int(balance_pts + deduct_pts);
-
   
+  new_balance_pts = int(custom_pts + inp.toInt());
+
+//  if(new_balance_pts < 0)
+//  {
+//    Serial.println("NOT ENOUGH UNP!");
+//    return;
+//  }
   //HERE WE WRITE AFTER READING
   
   byte buffer[34];

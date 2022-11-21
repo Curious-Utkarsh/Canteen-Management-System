@@ -65,6 +65,12 @@ void read_write_new_unp()
 
   new_balance_pts = int(balance_pts - deduct_pts);
 
+  if(new_balance_pts<0)
+  {
+    Serial.println("NOT ENOGUH POINTS");
+    check = 0;
+    return;
+  }
   
   //HERE WE WRITE AFTER READING
   

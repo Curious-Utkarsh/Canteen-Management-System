@@ -12,11 +12,15 @@ String inp="";
 char customKey = ' ';
 int balance_pts = 0;
 int deduct_pts = 0;
+int custom_pts = 0;
 String deduct_ptss = "";
 int new_balance_pts = 0;
 String new_balance_ptss = "";
 String ch = "";
-int choice = 0;
+int choice = -1;
+int check = -1;
+String content= "";
+int cardDet = 1;
 
 void setup() 
 {
@@ -27,28 +31,52 @@ void setup()
 
 void loop()
 {
+
   Serial.println(".....PRESS '1' TO ADD UNP TO CARD.....");
   Serial.println(".....PRESS '2' TO CHECK BALANCE UNP IN CARD.....");
   Serial.println(".....PRESS '3' TO MAKE TRANSACTION.....");
   Serial.println();
 
-  while(Serial.available() == 0)
-  {}
+  while(choice==-1)
+  {
+    input();
+    choice = inp.toInt();
 
-  ch = inp;
-  choice = ch.toInt();
+  }
 
   switch(choice)
   {
     case 1:
     Serial.println("PLACE CARD ON SCANNER TO ADD UNP  #");
-    delay(3000);
+    while(cardDet == 1)
+    {
+        // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+  if ( ! mfrc522.PICC_IsNewCardPresent()) 
+  {
+    continue;
+  }
+  cardDet = 0;
+  // Select one of the cards
+  if ( ! mfrc522.PICC_ReadCardSerial()) 
+  {
+    return;
+  }
+  content = "";
+  byte letter;
+  for (byte i = 0; i < mfrc522.uid.size; i++) 
+  {
+     content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+     content.concat(String(mfrc522.uid.uidByte[i], HEX));
+  }
+
+    }
     write_unp();
     Serial.println("UNP ADDED");
     delay(1000);
     Serial.println("REMOVE CARD");
     Serial.println();
     delay(4000);
+    cardDet = 0;
     break;
 
     case 2:
@@ -76,11 +104,18 @@ void loop()
     Serial.println("PLACE CARD ON SCANNER TO MAKE TRANSACTION");
     delay(3000);
     read_write_new_unp();
-    Serial.println("TRANSACTION MADE SUCCESSFULLY");
-    delay(1000);
-    Serial.println("REMOVE CARD");
-    Serial.println();
-    delay(3000);
+    if(check == 0)
+    {
+      Serial.println("TRANSACTION WAS UNSUCCESSFUL!");
+      check = -1;
+    }
+    else{
+      Serial.println("TRANSACTION MADE SUCCESSFULLY");
+      delay(1000);
+      Serial.println("REMOVE CARD");
+      Serial.println();
+      delay(3000);
+    }
     break;
 
     default :
@@ -88,6 +123,8 @@ void loop()
     Serial.println();
     break; 
   }
-  pts=""; // this line is very important
+  pts="";
+  choice = -1;
+  check = -1;// this line is very important
 
 }

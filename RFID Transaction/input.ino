@@ -1,6 +1,7 @@
 void input()
 {
 inp = "";
+customKey = ' ';
 const byte ROWS = 4; 
 const byte COLS = 4; 
 
