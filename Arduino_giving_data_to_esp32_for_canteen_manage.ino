@@ -8,7 +8,7 @@ String dataPack = "";
 
 void setup() 
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   mySerial.begin(9600);
 }
 
@@ -38,3 +38,4 @@ void loop()
   Unp_Paid = "";
   dataPack = "";
 }
+
