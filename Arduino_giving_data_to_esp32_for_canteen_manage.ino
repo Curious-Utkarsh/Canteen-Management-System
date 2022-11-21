@@ -1,6 +1,6 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySerial(8 , 7); //(rx, tx)
+SoftwareSerial mySerial(A0 , A1); //(rx, tx)
 
 String ID = "";
 String Unp_Paid = "";
