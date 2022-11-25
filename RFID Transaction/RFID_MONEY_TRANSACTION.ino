@@ -27,6 +27,7 @@ void setup()
   Serial.begin(9600);        // Initialize serial communications with the PC
   SPI.begin();               // Init SPI bus
   mfrc522.PCD_Init();        // Init MFRC522 card
+  lcd.init();
 }
 
 void loop()
@@ -47,7 +48,8 @@ void loop()
   switch(choice)
   {
     case 1:
-    Serial.println("PLACE CARD ON SCANNER TO ADD UNP  #");
+    //Serial.println("PLACE CARD ON SCANNER TO ADD UNP  #");
+    lcd_place_card();
     while(cardDet == 1)
     {
         // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
@@ -71,9 +73,11 @@ void loop()
 
     }
     write_unp();
-    Serial.println("UNP ADDED");
+    //Serial.println("UNP ADDED");
+    lcd_unp_added;
     delay(1000);
-    Serial.println("REMOVE CARD");
+    //Serial.println("REMOVE CARD");
+    lcd_rmv_card();
     Serial.println();
     delay(4000);
     cardDet = 0;
@@ -83,8 +87,9 @@ void loop()
     Serial.println("PLACE CARD ON SCANNER TO CHECK BALANCE UNP");
     delay(3000);
     read_unp();
-    Serial.print("BALANCE UNP IN CARD : ");
-    Serial.println(balance_pts);
+    //Serial.print("BALANCE UNP IN CARD : ");
+    //Serial.println(balance_pts);
+    lcd_bal_pts();
     delay(1000);
     Serial.println("REMOVE CARD");
     Serial.println();
