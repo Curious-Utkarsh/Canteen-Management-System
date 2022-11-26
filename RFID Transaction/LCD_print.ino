@@ -1,7 +1,7 @@
-#include<LiquidCrystal_I2C.h>
-#include<Wire.h>
+//#include<LiquidCrystal_I2C.h>
+//#include<Wire.h>
 
-LiquidCrystal_I2C lcd(0x27, 16, 2); //LCD SDA -> A4; SCL -> A5
+//LiquidCrystal_I2C lcd(0x27, 16, 2); //LCD SDA -> A4; SCL -> A5
 
 void lcd_place_card(){
   lcd.backlight();
@@ -20,6 +20,8 @@ void lcd_unp_added(){
   char mystr[]="UNP Added";
   lcd.setCursor(3,0);
   lcd.print(mystr);
+  lcd.setCursor(3,1);
+  lcd.print(deduct_pts);
 }
 
 void lcd_rmv_card(){
