@@ -42,18 +42,14 @@ void loop()
   Serial.println(".....PRESS '3' TO MAKE TRANSACTION.....");
   Serial.println();
 
-  while(choice==-1)
-  {
     input();
     choice = inp.toInt();
 
-  }
 
   switch(choice)
   {
     case 1:
     Serial.println("PLACE CARD ON SCANNER TO ADD UNP  #");
-    lcd_place_card();
     while(cardDet == 1)
     {
         // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
@@ -78,14 +74,10 @@ void loop()
     }
     write_unp();
     Serial.println("UNP ADDED");
-    lcd_unp_added();
     delay(1000);
-    lcd.clear();
-    lcd_bal_pts();
     Serial.println("REMOVE CARD");
-    lcd_rmv_card();
     Serial.println();
-    delay(4000);
+    delay(2000);
     cardDet = 0;
     break;
 
@@ -95,47 +87,42 @@ void loop()
     read_unp();
     Serial.print("BALANCE UNP IN CARD : ");
     Serial.println(balance_pts);
-    lcd_bal_pts();
     delay(1000);
     Serial.println("REMOVE CARD");
     Serial.println();
-    lcd_rmv_card();
-    delay(4000);
+    delay(2000);
     break;
 
     case 3:
-    menu();
-//    Serial.println("ENTER UNP TO DEDUCT  #");
-//    while(Serial.available()== 0)
-//    {}
-//    deduct_ptss = Serial.readStringUntil('#');
-//    deduct_pts = deduct_ptss.toInt();
-//    Serial.print("POINTS TO BE DEDUCTED : ");
-//    Serial.println(deduct_pts);
-//    delay(1000);
-//    
-//    Serial.println("PLACE CARD ON SCANNER TO MAKE TRANSACTION");
-//    delay(3000);
-//    read_write_new_unp();
-//    if(check == 0)
-//    {
-//      Serial.println("TRANSACTION WAS UNSUCCESSFUL!");
-//      check = -1;
-//    }
-//    else{
-//      Serial.println("TRANSACTION MADE SUCCESSFULLY");
-//      delay(1000);
-//      Serial.println("REMOVE CARD");
-//      Serial.println();
-//      delay(3000);
-//    }
+    Serial.println("ENTER UNP TO DEDUCT  #");
+    while(Serial.available()== 0)
+    {}
+    deduct_ptss = Serial.readStringUntil('#');
+    deduct_pts = deduct_ptss.toInt();
+    Serial.print("POINTS TO BE DEDUCTED : ");
+    Serial.println(deduct_pts);
+    delay(1000);
+    
+    Serial.println("PLACE CARD ON SCANNER TO MAKE TRANSACTION");
+    delay(3000);
+    read_write_new_unp();
+    if(check == 0)
+    {
+      Serial.println("TRANSACTION WAS UNSUCCESSFUL!");
+      check = -1;
+    }
+    else{
+      Serial.println("TRANSACTION MADE SUCCESSFULLY");
+      delay(1000);
+      Serial.println("REMOVE CARD");
+      Serial.println();
+      delay(3000);
+    }
     break;
 
     default :
     Serial.println("INVALID CHOICE");
     Serial.println();
-    lcd.setCursor(0,0);
-    lcd.print("Invalid Choice");
     break; 
   }
   pts="";
