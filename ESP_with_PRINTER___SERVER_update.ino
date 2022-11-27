@@ -9,8 +9,8 @@
 
 Adafruit_Thermal printer(&Serial2);      //for printer
 
-const char *ssid     = "You2.4";
-const char *password = "12341234";
+const char *ssid     = "172.0.0.0";
+const char *password = "8652070679";
 
 WiFiUDP ntpUDP;
 
@@ -122,9 +122,9 @@ void printBill()
   printer.boldOn();
   printer.justify('L');
   printer.setSize('S');
-  printer.println(" QTY   ORDER            PRICE");
+  printer.println(" QTY   ORDER\t\t PRICE");
   printer.println();
-  printer.print(" "+qty+"     "+order+"       "+cost);
+  printer.print("  "+qty+"    "+order+"\t\t "+cost);
   printer.println("\n");
   printer.boldOff();
   printer.print("\n");
@@ -136,7 +136,7 @@ void printBill()
   printer.println("TIME:"+Time);
   printer.println("TODAY:"+today); 
   printer.print("\n");
-  printer.print("--POWERED BY : UTK & NIM--");
+  printer.print("-- POWERED BY : ENGINEERS --");
   printer.println("\n");  
   printer.println();
   printer.write(10);
