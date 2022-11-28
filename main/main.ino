@@ -79,18 +79,19 @@ void loop()
       
     case 3:
       menu();
-      deduct_pts=menu_deduct_pts;
-      Serial.println("PLACE CARD ON THE READER:");
-      isCard();
-      writeElx(-1);
-      if(check == 0)
-      {
-        Serial.println("TRANSACTION UNSUCCESSFUL!");
-        check = -1;
-      }
-      else
-      {
-        Serial.println("TRANSACTION DONE!");
+//      delay(3000);
+//      deduct_pts=menu_deduct_pts;
+//      Serial.println("PLACE CARD ON THE READER:");
+//      isCard();
+//      writeElx(-1);
+//      if(check == 0)
+//      {
+//        Serial.println("TRANSACTION UNSUCCESSFUL!");
+//        check = -1;
+//      }
+//      else
+//      {
+//        Serial.println("TRANSACTION DONE!");
 //        Serial.println("ENTER QUANTITY :");
 //        while(Serial.available() == 0)
 //        {}
@@ -101,15 +102,15 @@ void loop()
 //        fName = Serial.readStringUntil('#');
 //        getUID();
 //        ID = String(content);
-          deduct_pts=menu_deduct_pts;
-          Elx_Paid = String(deduct_pts);
+//          deduct_pts=menu_deduct_pts;
+//          Elx_Paid = String(deduct_pts);
 //        dataPack = (ID+"#"+Elx_Paid+"#"+qty+"#"+fName);
 //        Serial1.println(dataPack);
 //        unpack(dataPack);
 //        delay(2000);
-      }
-      Serial.println("REMOVE THE CARD!");
-      delay(2000);
+//      }
+//      Serial.println("REMOVE THE CARD!");
+//      delay(2000);
       break;
 
     default:

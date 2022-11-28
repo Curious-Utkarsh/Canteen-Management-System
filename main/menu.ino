@@ -13,13 +13,10 @@ int food_or_bev_choice = -1;
 int food_select = -1;
 int bev_select = -1;
 int quantity = 1;
-//int choice2_1;
-String checkout = "";
 
 Serial.setTimeout(20000L);
 Serial.println("Press 1 to order Food");
 Serial.println(F("Press 3 to order Beverage"));
-
 input();
 food_or_bev_choice = inp.toInt();
 
@@ -34,7 +31,7 @@ switch(food_or_bev_choice){
   Serial.println("* 4 :- Samosa = 20   *");
   Serial.println("* 5 :- Dosa = 50     *");
   Serial.println("**********************");
-  Serial.setTimeout(20000);
+  Serial.setTimeout(20000L);
   Serial.println(F("Make your selection: "));
   Serial.print("After making selection finally press 0 to proceed with checkout");
   
