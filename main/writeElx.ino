@@ -63,13 +63,18 @@ void writeElx(int change)
   //Serial.println(F("\n**End Reading**\n"));
 
   delay(1000); //change value if you want to read cards faster
-  Serial.setTimeout(20000L) ;     // wait until 20 seconds for input from serial
+//  Serial.setTimeout(20000L) ;     // wait until 20 seconds for input from serial
+//  // Ask Points to Enter
+//  Serial.println(F("Enter UNP Points to be Added, ending with #"));
+//  input();
+//  deduct_pts = inp.toInt();
+  if(change == 1)
+  {
+    Serial.setTimeout(20000L) ;     // wait until 20 seconds for input from serial
   // Ask Points to Enter
   Serial.println(F("Enter UNP Points to be Added, ending with #"));
   input();
   deduct_pts = inp.toInt();
-  if(change == 1)
-  {
     new_balance_pts = int(balance_pts + deduct_pts);
   }
   if(change == -1)

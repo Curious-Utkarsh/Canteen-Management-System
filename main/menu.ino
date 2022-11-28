@@ -1,6 +1,7 @@
 void menu(){
 //delay(3000);
 int total = 0;
+int menu_deduct_pts=0;
 int vadapav=15;
 int misalpav=40;
 int dosa=50;
@@ -93,7 +94,7 @@ if(food_select != 0){
           Serial.println();
           Serial.print(quantity);
           Serial.println(" Samosa added to cart");
-          total+=(quantity*dosa);
+          total+=(quantity*samosa);
           delay(1000);
           goto menu_food;
         }break;
@@ -120,6 +121,7 @@ if(food_select != 0){
       }
 }
 else{
+  menu_deduct_pts=total;
   Serial.print("You have to pay ");
   Serial.print(total);
   Serial.println(" Elixir points");
@@ -210,6 +212,7 @@ if(bev_select != 0){
       }
 }
 else{
+  menu_deduct_pts=total;
   Serial.print("You have to pay ");
   Serial.print(total);
   Serial.println(" Elixir points");

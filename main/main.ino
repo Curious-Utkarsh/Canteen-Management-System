@@ -12,6 +12,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN); //Create MFRC522 instance
 
 String pts = "";
 String inp = "";
+int menu_deduct_pts = 0;
   char customKey = ' ';
    int balance_pts = 0;
    int deduct_pts = 0;
@@ -78,17 +79,18 @@ void loop()
       
     case 3:
       menu();
-//      Serial.println("PLACE CARD ON THE READER:");
-//      isCard();
-//      writeElx(-1);
-//      if(check == 0)
-//      {
-//        Serial.println("TRANSACTION UNSUCCESSFUL!");
-//        check = -1;
-//      }
-//      else
-//      {
-//        Serial.println("TRANSACTION DONE!");
+      deduct_pts=menu_deduct_pts;
+      Serial.println("PLACE CARD ON THE READER:");
+      isCard();
+      writeElx(-1);
+      if(check == 0)
+      {
+        Serial.println("TRANSACTION UNSUCCESSFUL!");
+        check = -1;
+      }
+      else
+      {
+        Serial.println("TRANSACTION DONE!");
 //        Serial.println("ENTER QUANTITY :");
 //        while(Serial.available() == 0)
 //        {}
@@ -99,13 +101,14 @@ void loop()
 //        fName = Serial.readStringUntil('#');
 //        getUID();
 //        ID = String(content);
-//        Elx_Paid = String(deduct_pts);
+          deduct_pts=menu_deduct_pts;
+          Elx_Paid = String(deduct_pts);
 //        dataPack = (ID+"#"+Elx_Paid+"#"+qty+"#"+fName);
 //        Serial1.println(dataPack);
 //        unpack(dataPack);
 //        delay(2000);
-//      }
-//      Serial.println("REMOVE THE CARD!");
+      }
+      Serial.println("REMOVE THE CARD!");
       delay(2000);
       break;
 
