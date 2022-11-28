@@ -29,6 +29,10 @@ while(true)
   {
     break;
   }
+  if(customKey == 'A')
+  {
+    break;
+  }
   if(customKey == '*')
   {
     index = inp.length() - 1;

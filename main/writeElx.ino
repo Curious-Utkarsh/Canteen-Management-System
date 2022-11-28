@@ -76,7 +76,7 @@ void writeElx(int change)
   {
     new_balance_pts = int(balance_pts - deduct_pts);
   }
-
+  
   if(new_balance_pts < 0)
   {
     Serial.println("");

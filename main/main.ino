@@ -55,8 +55,11 @@ void loop()
       Serial.println("PLACE CARD ON SCANNER TO ADD ELIXIR : ");
       isCard();
       writeElx(1);
-      Serial.println("ELIXIR ADDED!");
+      Serial.println("ELIXIR ADDED! +");
+      Serial.print(deduct_pts);
       delay(2000);
+      Serial.println("New Balance: ");
+      Serial.print(new_balance_pts);
       Serial.println("REMOVE THE CARD!");
       delay(2000);
       break;
