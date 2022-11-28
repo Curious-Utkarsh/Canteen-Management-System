@@ -34,6 +34,7 @@ String dataPack = "";
 void setup()
 {
   Serial.begin(9600);
+  Serial1.begin(9600);
   mySerial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();
@@ -76,33 +77,35 @@ void loop()
       break;
       
     case 3:
-      Serial.println("PLACE CARD ON THE READER:");
-      isCard();
-      writeElx(-1);
-      if(check == 0)
-      {
-        Serial.println("TRANSACTION UNSUCCESSFUL!");
-        check = -1;
-      }
-      else
-      {
-        Serial.println("TRANSACTION DONE!");
-        Serial.println("ENTER QUANTITY :");
-        while(Serial.available() == 0)
-        {}
-        qty = Serial.readStringUntil('#');
-        Serial.println("ENTER FOOD NAME :");
-        while(Serial.available() == 0)
-        {}
-        fName = Serial.readStringUntil('#');
-        getUID();
-        ID = String(content);
-        Elx_Paid = String(deduct_pts);
-        dataPack = (ID+"#"+Elx_Paid+"#"+qty+"#"+fName);
-        unpack(dataPack);
-        delay(2000);
-      }
-      Serial.println("REMOVE THE CARD!");
+      menu();
+//      Serial.println("PLACE CARD ON THE READER:");
+//      isCard();
+//      writeElx(-1);
+//      if(check == 0)
+//      {
+//        Serial.println("TRANSACTION UNSUCCESSFUL!");
+//        check = -1;
+//      }
+//      else
+//      {
+//        Serial.println("TRANSACTION DONE!");
+//        Serial.println("ENTER QUANTITY :");
+//        while(Serial.available() == 0)
+//        {}
+//        qty = Serial.readStringUntil('#');
+//        Serial.println("ENTER FOOD NAME :");
+//        while(Serial.available() == 0)
+//        {}
+//        fName = Serial.readStringUntil('#');
+//        getUID();
+//        ID = String(content);
+//        Elx_Paid = String(deduct_pts);
+//        dataPack = (ID+"#"+Elx_Paid+"#"+qty+"#"+fName);
+//        Serial1.println(dataPack);
+//        unpack(dataPack);
+//        delay(2000);
+//      }
+//      Serial.println("REMOVE THE CARD!");
       delay(2000);
       break;
 
