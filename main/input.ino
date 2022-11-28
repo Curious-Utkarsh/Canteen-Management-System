@@ -23,6 +23,12 @@ while(true)
   customKey = customKeypad.getKey();
   if(customKeypad.getState() != PRESSED)
   {
+    if(Serial.available() == 0){}
+    else{
+      inp=String(Serial.readStringUntil('#'));
+      Serial.println(inp);
+      break;
+    }
     continue;
   }
   if(customKey == '#')
