@@ -2,6 +2,8 @@
 #include <MFRC522.h>
 #include <Keypad.h>
 #include <SoftwareSerial.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 
 SoftwareSerial mySerial(A0, A1); //(rx, tx)
 
@@ -32,10 +34,14 @@ String qty = "";
 String fName = "";
 String dataPack = "";
 
+LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+
 void setup()
 {
+  lcd.init();
+  lcd.backlight();
   Serial.begin(9600);
-  Serial1.begin(9600);
+//  Serial1.begin(9600);
   mySerial.begin(9600);
   SPI.begin();
   mfrc522.PCD_Init();
@@ -44,7 +50,13 @@ void setup()
 void loop()
 {
   Serial.println(".....PRESS '1' TO ADD UNP TO CARD.....");
+  lcd.setCursor(0,0);
+  lcd.home();
+  lcd.print("Press 1 to Add pts");
   Serial.println(".....PRESS '5' TO CHECK BALANCE UNP IN CARD.....");
+  lcd.setCursor(0,1);
+  lcd.home();
+  lcd.print("Press 5 to check bal");
   Serial.println(".....PRESS '3' TO MAKE TRANSACTION.....");
   Serial.println();
 
@@ -55,25 +67,50 @@ void loop()
   {
     case 1:
       Serial.println("PLACE CARD ON SCANNER TO ADD ELIXIR : ");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Place Card on scanner");
       isCard();
       writeElx(1);
       Serial.println("ELIXIR ADDED! +");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("ELIXIR ADDED! +");
       Serial.print(deduct_pts);
       delay(2000);
       Serial.println("New Balance: ");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("New Balance: ");
+      lcd.setCursor(0,1);
+      lcd.print(new_balance_pts);
       Serial.print(new_balance_pts);
       Serial.println("REMOVE THE CARD!");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Remove Card");
       delay(2000);
       break;
       
     case 5:
       Serial.println("PLACE CARD ON SCANNER TO CHECK BALANCE");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Place Card on scanner");
       isCard();
       readElx();
       Serial.println("YOUR BALANCE IS :");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("YOUR BALANCE IS :");
+      lcd.setCursor(0,1);
+      lcd.print(balance_pts);
       Serial.println(balance_pts);
       delay(1000);
       Serial.println("REMOVE THE CARD!");
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Remove Card");
       delay(2000);
       break;
       
