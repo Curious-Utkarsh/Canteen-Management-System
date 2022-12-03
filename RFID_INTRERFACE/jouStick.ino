@@ -11,26 +11,34 @@ void joyStick()
   {
     check = 0;
     button = "";
+    rst = 1;
   }
-
-  if(xVal >= 1000)
+  if(rst == 1)
   {
-    button = "r";
-  }
-  if(xVal <= 23)
-  {
-    button = "l";
-  }
-  if(yVal >= 1000)
-  {
-    button = "u";
-  }
-  if(yVal <= 23)
-  {
-    button = "d";
-  }
-  if(sVal == LOW)
-  {
-    button = "s";
-  }
+    if(xVal >= 1000)
+    {
+      button = "r";
+    }
+    if(xVal <= 23)
+    {
+      button = "l";
+    }
+    if(yVal >= 1000 && (yPos >= 16 && yPos <= (yPos + ((count-1)*10))) && (flag > 0))
+    {
+      button = "u";
+      flag--;
+      rst = 0;
+    }
+    if(yVal <= 23 && (yPos >= 16 && yPos <= (yPos + ((count-1)*10))) && (flag < (count-1)))
+    {
+      button = "d";
+      flag++;
+      rst = 0;
+    }
+    if(sVal == LOW)
+    {
+      button = "s";
+      rst = 0;
+    }
+}
 }
