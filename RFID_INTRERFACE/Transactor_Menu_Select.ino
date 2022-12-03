@@ -1,4 +1,3 @@
-//#include <Arduino.h>
 #include <U8g2lib.h>
 #include <SPI.h>
 
@@ -12,8 +11,13 @@ int xVal = 0;
 int yVal = 0;
 int sVal = 0;
 
-int dt = 0;
 int check = 0;
+
+int count = 3;
+String button = "";
+int yPos = 16;
+int flag = 0;
+int rst = 0;
 
 void setup() 
 {
@@ -35,9 +39,9 @@ struct menu_entry_type
 
 struct menu_state
 {
-  int16_t menu_start;   /* in pixel */
-  int16_t frame_position;   /* in pixel */
-  uint8_t position;     /* position, array index */
+  int16_t menu_start;  
+  int16_t frame_position;   
+  uint8_t position;   
 };
 
 /*
@@ -62,8 +66,7 @@ struct menu_entry_type menu_entry_list[] =
   { NULL, 0, NULL } 
 };
 
-String button = "";
-int8_t button_event = 0;    // set this to 0, once the event has been processed
+int8_t button_event = 0;    
 
 struct menu_state current_state = { ICON_BGAP, ICON_BGAP, 0 };
 struct menu_state destination_state = { ICON_BGAP, ICON_BGAP, 0 };
