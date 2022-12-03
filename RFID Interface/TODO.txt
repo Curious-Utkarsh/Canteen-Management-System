@@ -1,3 +1,0 @@
-1) Create Images via Canva.
-2) Format sd crad to FAT32 and add the photos in bmp format.
-3) Change the code accordingly.
