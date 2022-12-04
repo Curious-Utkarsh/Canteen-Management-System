@@ -19,6 +19,13 @@ int yPos = 16;
 int flag = 0;
 int rst = 0;
 
+int selection = 0;
+int selection_qty = 0;
+int cnt_qty = 49; //ASCII VALUE FOR 1
+int cnt = 1;
+
+int k = 0;
+
 void setup() 
 {
   u8g2.begin(); 
@@ -54,7 +61,7 @@ struct menu_state
 #define ICON_HEIGHT 21
 #define ICON_GAP 4
 #define ICON_BGAP 6
-#define ICON_Y 24+ ICON_GAP
+#define ICON_Y 25+ ICON_GAP
 
 struct menu_entry_type menu_entry_list[] =
 {
@@ -102,18 +109,14 @@ void loop()
       button = "";
     }
     if ( button_event == U8X8_MSG_GPIO_MENU_SELECT )
-    {
-      u8g2.setFont(u8g2_font_helvB10_tr);  
+    { 
       check = 1;
       button = "";
-      coffee_tea();
-      u8g2.userInterfaceMessage("Selection:", menu_entry_list[destination_state.position].name, "", " Ok ");
+      delay(500);
+      choose_menu();
       button_event = 0;
     }
-    if ( button_event > 0 ) // all known events are processed, clear event
-    {
-      button_event = 0;
-    }
+    
   } 
   while ( towards(&current_state, &destination_state) );
 }
