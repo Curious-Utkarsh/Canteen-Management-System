@@ -1,13 +1,18 @@
 void checkout()
 {
   char cnt_ch[10];    
-  itoa(cnt, cnt_ch, 10);  
+  char cnt_f[10];
+  itoa(cnt, cnt_ch, 10); 
+  itoa(flag, cnt_f, 10); 
   u8g2.clearBuffer();
   u8g2.setFont(u8g2_font_6x10_tr); 
   u8g2.drawStr(35,10,"YOUR CART"); 
   u8g2.drawLine(5, 12, 122, 12);
   u8g2.setFont(u8g2_font_5x8_tr);
-  u8g2.setCursor(55, 45);
+  
+  u8g2.drawStr(8, 25, "COFFEE         10/-\n");
+  u8g2.drawStr(110, 25, "x\n");
+  u8g2.setCursor(115, 25);
   u8g2.print(cnt_ch);
 
   joyStick();
