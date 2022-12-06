@@ -3,36 +3,38 @@
 
 U8G2_ST7920_128X64_F_HW_SPI u8g2(U8G2_R0, /* CS=*/ 10, /* reset=*/ 8);
 
-int xPin = A0;
-int yPin = A1;
-int sPin = 5;
+#define xPin A0
+#define yPin A1
+#define sPin 5
 
-int xVal = 0;
-int yVal = 0;
-int sVal = 0;
+unsigned int xVal = 0;
+unsigned int yVal = 0;
+bool sVal = LOW;
 
-int check = 0;
+byte check = 0;
+char button = ' ';
+byte rst = 0;
 
-int count = 3;
-String button = "";
-int yPos = 16;
-int xPos = 5;
-int xCnt = 0;
-int flag = 0;
-int rst = 0;
+byte flag = 0;
+byte xCnt = 0;
+byte k = 0;
 
-int selection = 0;
-int selection_qty = 0;
-int cnt = 1;
+#define count 3
+#define yPos 16
+#define xPos 5
+#define dt 200
 
-int k = 0;
-int dt = 200;
+byte cnt = 1;
+
+String f[3];
+byte p[3];
+byte q[3];
+byte y = 0;
 
 void setup() 
 {
   u8g2.begin(); 
   u8g2.setFont(u8g2_font_6x12_tr);
-  Serial.begin(9600);
   pinMode(xPin, INPUT);
   pinMode(yPin, INPUT);
   pinMode(sPin, INPUT);
@@ -53,12 +55,6 @@ struct menu_state
   uint8_t position;   
 };
 
-/*
-  Icon configuration
-  Width and height must match the icon font size
-  GAP: Space between the icons
-  BGAP: Gap between the display border and the cursor.
-*/
 #define ICON_WIDTH 21
 #define ICON_HEIGHT 21
 #define ICON_GAP 4
@@ -101,19 +97,19 @@ void loop()
       to_right(&destination_state);
       check = 1;
       button_event = 0;
-      button = "";
+      button = ' ';
     }
     if ( button_event == U8X8_MSG_GPIO_MENU_PREV )
     {
       to_left(&destination_state);
       check = 1;
       button_event = 0;
-      button = "";
+      button = ' ';
     }
     if ( button_event == U8X8_MSG_GPIO_MENU_SELECT )
     { 
       check = 1;
-      button = "";
+      button = ' ';
       delay(dt);
       choose_menu();
       button_event = 0;
