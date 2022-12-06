@@ -6,16 +6,16 @@ void counter()
   joyStick();
   if (check == 0)
   {
-    if(button == "r" && (cnt>=1 && cnt<=10))
+    if(button == 'r' && (cnt>=1 && cnt<=10))
     {
       cnt++;
-      button = "";
+      button = ' ';
       check = 1;
     }
-    if(button == "l" && (cnt>1 && cnt<=10))
+    if(button == 'l' && (cnt>1 && cnt<=10))
     {
       cnt--;
-      button = "";
+      button = ' ';
       check = 1;
     }
     itoa(cnt, ch, 10);
