@@ -15,8 +15,8 @@ void thali()
     u8g2.drawBox(4, (yPos + (flag*10)), 120, 11);
     u8g2.setDrawColor(2);  
 
-    u8g2.drawStr(8, 25, "HALF-PLATE         40/-\n");
-    u8g2.drawStr(8, 35, "FULL-PLATE         70/-\n");
+    u8g2.drawStr(8, 25, "HALF-PLT       40/-\n");
+    u8g2.drawStr(8, 35, "FULL-PLT       70/-\n");
     u8g2.sendBuffer();   
     joyStick();
     if(button == 's')
@@ -25,12 +25,12 @@ void thali()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "HALF-PLATE";
+        f[y] = "HALF-PLT";
         p[y] = 40;
       }
       if(flag == 1)
       {
-        f[y] = "FULL-PLATE";
+        f[y] = "FULL-PLT";
         p[y] = 70;
       }
       delay(dt);
@@ -88,7 +88,7 @@ void thali()
         }
         u8g2.clearBuffer();
         u8g2.setFont(u8g2_font_6x10_tr); 
-        u8g2.drawStr(32,10,"MAKE PAYMENT"); 
+        u8g2.drawStr(30,10,"MAKE PAYMENT"); 
         u8g2.drawLine(5, 12, 122, 12);
         u8g2.sendBuffer();
       }

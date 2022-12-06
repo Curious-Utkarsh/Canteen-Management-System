@@ -112,8 +112,8 @@ void loop()
       check = 1;
       button = ' ';
       delay(dt);
-      choose_menu();
       button_event = 0;
+      choose_menu();
     }
     
   } 

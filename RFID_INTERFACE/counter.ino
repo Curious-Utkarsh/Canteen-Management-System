@@ -1,6 +1,5 @@
 void counter()
 {
-  char ch[10];
   u8g2.setFont(u8g2_font_ncenB14_tr);
   u8g2.setCursor(60, 45);
   joyStick();
@@ -18,7 +17,6 @@ void counter()
       button = ' ';
       check = 1;
     }
-    itoa(cnt, ch, 10);
   }
   
   if(cnt > 10)
@@ -35,6 +33,6 @@ void counter()
   }
   else
   {
-    u8g2.print(ch);
+    u8g2.print(cnt);
   }
 }

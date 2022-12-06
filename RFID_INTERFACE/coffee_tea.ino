@@ -50,8 +50,8 @@ void coffee_tea()
           break;
         }
         qty();
-        q[y] = cnt;
       }
+      q[y] = cnt;
       while(digitalRead(sPin) == LOW)
       {}
       break;
