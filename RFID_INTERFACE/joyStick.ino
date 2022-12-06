@@ -7,7 +7,7 @@ void joyStick()
   if((xVal>=400 && xVal<=600) && (yVal>=400 && yVal<=600) && sVal == HIGH)
   {
     check = 0;
-    button = "";
+    button = ' ';
     rst = 1;
     k = 0;
   }
@@ -15,27 +15,27 @@ void joyStick()
   {
     if(xVal >= 1000)
     {
-      button = "r";
+      button = 'r';
     }
     if(xVal <= 23)
     {
-      button = "l";
+      button = 'l';
     }
     if(yVal <= 23 && (yPos >= 16 && yPos <= (yPos + ((count-1)*10))) && (flag > 0))
     {
-      button = "u";
+      button = 'u';
       flag--;
       rst = 0;
     }
     if(yVal >= 1000 && (yPos >= 16 && yPos <= (yPos + ((count-1)*10))) && (flag < (count-1)))
     {
-      button = "d";
+      button = 'd';
       flag++;
       rst = 0;
     }
     if(sVal == LOW && k == 0)
     {
-      button = "s";
+      button = 's';
       rst = 0;
       k = 1;
     }
