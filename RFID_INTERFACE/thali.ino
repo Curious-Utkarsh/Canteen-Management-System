@@ -1,4 +1,4 @@
-void coffee_tea()
+void thali()
 {
   byte sl = 0;
   flag = 0;
@@ -15,9 +15,8 @@ void coffee_tea()
     u8g2.drawBox(4, (yPos + (flag*10)), 120, 11);
     u8g2.setDrawColor(2);  
 
-    u8g2.drawStr(8, 25, "COFFEE         10/-\n");
-    u8g2.drawStr(8, 35, "TEA            10/-\n");
-    u8g2.drawStr(8, 45, "MILK           10/-");
+    u8g2.drawStr(8, 25, "HALF-PLATE         40/-\n");
+    u8g2.drawStr(8, 35, "FULL-PLATE         70/-\n");
     u8g2.sendBuffer();   
     joyStick();
     if(button == 's')
@@ -26,18 +25,13 @@ void coffee_tea()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "COFFEE";
-        p[y] = 10;
+        f[y] = "HALF-PLATE";
+        p[y] = 40;
       }
       if(flag == 1)
       {
-        f[y] = "TEA";
-        p[y] = 10;
-      }
-      if(flag == 2)
-      {
-        f[y] = "MILK";
-        p[y] = 10;
+        f[y] = "FULL-PLATE";
+        p[y] = 70;
       }
       delay(dt);
       while(slq == 0)

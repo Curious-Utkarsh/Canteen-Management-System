@@ -16,15 +16,16 @@ char button = ' ';
 byte rst = 0;
 
 byte flag = 0;
-byte xCnt = 0;
+byte xCnt = 1;
 byte k = 0;
 
-#define count 3
+byte count;
 #define yPos 16
-#define xPos 5
+#define xPos 3
 #define dt 200
 
 byte cnt = 1;
+byte slq = 0;
 
 String f[3];
 byte p[3];
