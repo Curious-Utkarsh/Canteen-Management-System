@@ -1,37 +1,57 @@
 void coffee_tea()
 {
-  String menu[] = {"COFFEE", "TEA", "MILK"};
-  String str = "";
+  byte sl = 0;
+  byte slq = 0;
   flag = 0;
-  while(selection == 0)
+  while(sl == 0)
   {
     u8g2.clearBuffer();         
     u8g2.setFont(u8g2_font_6x10_tr); 
     u8g2.drawStr(30,10,"SELECT ITEM");  
     u8g2.drawLine(5, 12, 122, 12);
-    Cursor();
+
+    joyStick(); //cursor()
+    u8g2.setFontMode(1);
+    u8g2.setDrawColor(1);
+    u8g2.drawBox(4, (yPos + (flag*10)), 120, 11);
+    u8g2.setDrawColor(2);  
+
     u8g2.drawStr(8, 25, "COFFEE         10/-\n");
     u8g2.drawStr(8, 35, "TEA            10/-\n");
     u8g2.drawStr(8, 45, "MILK           10/-");
     u8g2.sendBuffer();   
     joyStick();
-    if(button == "s")
+    if(button == 's')
     {
-      button = "";
-      selection = 1;
-      str = menu[flag];
-      delay(dt);
-      while(selection_qty == 0)
+      button = ' ';
+      sl = 1;
+      if(flag == 0)
       {
-
+        f[y] = "COFFEE";
+        p[y] = 10;
+      }
+      if(flag == 1)
+      {
+        f[y] = "TEA";
+        p[y] = 10;
+      }
+      if(flag == 2)
+      {
+        f[y] = "MILK";
+        p[y] = 10;
+      }
+      delay(dt);
+      while(slq == 0)
+      {
         joyStick(); 
-        if(button == "s")
+        if(button == 's')
         {
-          button = "";
-          selection_qty = 1;
+          button = ' ';
+          slq = 1;
           break;
         }
         qty();
+        q[y] = cnt;
       }
       while(digitalRead(sPin) == LOW)
       {}
@@ -39,23 +59,24 @@ void coffee_tea()
     }
   }
   delay(dt);
-  selection = 0;
+  sl = 0;
   
-  while(selection == 0)
+  while(sl == 0)
   {
     joyStick();
-    if(button == "s")
+    if(button == 's')
     {
-      button = "";
-      selection = 1;
+      button = ' ';
+      sl = 1;
       break;
     }
     checkout();
   }
   delay(dt);
 
-  selection = 0;
-  selection_qty = 0;
+  sl = 0;
+  slq = 0;
   flag = 0;
   cnt = 1;
+  y++;
 }
