@@ -7,15 +7,18 @@ void choose_menu()
   }
   if(menu_entry_list[destination_state.position].name == "Snacks")
   {
-    //snacks();
+    count = 4;
+    snacks();
   }
   if(menu_entry_list[destination_state.position].name == "Drinks")
   {
-    //drinks();
+    count = 4;
+    drinks();
   }
   if(menu_entry_list[destination_state.position].name == "Ice-Cream")
   {
-    //ice();
+    count = 3;
+    ice();
   }
   if(menu_entry_list[destination_state.position].name == "Thali")
   {

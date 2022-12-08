@@ -1,4 +1,4 @@
-void thali()
+void ice()
 {
   byte sl = 0;
   flag = 0;
@@ -15,8 +15,9 @@ void thali()
     u8g2.drawBox(4, (yPos + (flag*10)), 120, 11);
     u8g2.setDrawColor(2);  
 
-    u8g2.drawStr(8, 25, "HALF-PLT       40/-\n");
-    u8g2.drawStr(8, 35, "FULL-PLT       70/-");
+    u8g2.drawStr(8, 25, "CHOCO-BAR      10/-\n");
+    u8g2.drawStr(8, 35, "CORNETTO       30/-\n");
+    u8g2.drawStr(8, 45, "CUP-CREAM      10/-\n");
     u8g2.sendBuffer();   
     joyStick();
     if(button == 's')
@@ -25,13 +26,18 @@ void thali()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "HALF-PLT";
-        p[y] = 40;
+        f[y] = "CHOCO-BAR";
+        p[y] = 10;
       }
       if(flag == 1)
       {
-        f[y] = "FULL-PLT";
-        p[y] = 70;
+        f[y] = "CORNETTO";
+        p[y] = 30;
+      }
+      if(flag == 2)
+      {
+        f[y] = "CUP-CREAM";
+        p[y] = 10;
       }
       delay(dt);
       while(slq == 0)

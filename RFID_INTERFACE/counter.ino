@@ -1,7 +1,6 @@
 void counter()
 {
   u8g2.setFont(u8g2_font_ncenB14_tr);
-  u8g2.setCursor(60, 45);
   joyStick();
   if (check == 0)
   {
@@ -33,6 +32,15 @@ void counter()
   }
   else
   {
-    u8g2.print(cnt);
+    if(cnt == 10)
+    {
+        u8g2.setCursor(53, 45);
+        u8g2.print(cnt);
+    }
+    else
+    {
+        u8g2.setCursor(60, 45);
+        u8g2.print(cnt);
+    }
   }
 }

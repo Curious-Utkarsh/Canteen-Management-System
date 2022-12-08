@@ -89,6 +89,8 @@ void coffee_tea()
           byte p[3];
           byte q[3];
           y = 0;
+          sum = 0;
+          pay = 0;
           break;
           
         }
@@ -96,6 +98,38 @@ void coffee_tea()
         u8g2.setFont(u8g2_font_6x10_tr); 
         u8g2.drawStr(32,10,"MAKE PAYMENT"); 
         u8g2.drawLine(5, 12, 122, 12);
+
+        if(pay == 0)
+        {
+          for(byte i = 0; i<=y; i++)
+          {
+            sum = sum + (p[i]*q[i]);
+            pay = 1;
+          }
+        }
+        char s[10];
+        itoa(sum, s, 10);
+        u8g2.setFont( u8g2_font_courB12_tr);
+        u8g2.setCursor(2, 28);
+        u8g2.print("AMOUNT TO BE");
+        u8g2.setCursor(10, 42);
+        u8g2.print("PAID : ");
+        if(sum <= 99)
+        {
+          u8g2.setCursor(78, 42);
+          u8g2.print(s);
+        }
+        if(sum >= 100)
+        {
+          u8g2.setCursor(55, 42);
+          u8g2.print(s);
+        }
+        u8g2.setCursor(99, 42);
+        u8g2.print("/-");
+        u8g2.setFont(u8g2_font_t0_11_tr);
+        u8g2.setCursor(2, 60);
+        u8g2.print("--PLACE CARD TO PAY--");
+        
         u8g2.sendBuffer();
       }
         break;

@@ -1,7 +1,8 @@
 #include <U8g2lib.h>
 #include <SPI.h>
 
-U8G2_ST7920_128X64_F_HW_SPI u8g2(U8G2_R0, /* CS=*/ 10, /* reset=*/ 8);
+//U8G2_ST7920_128X64_F_HW_SPI u8g2(U8G2_R0, /* CS=*/ 10, /* reset=*/ 8); // For Arduino Uno
+U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* CS=*/ 10, /* reset=*/ 8); // For Arduino Mega 2560
 
 #define xPin A0
 #define yPin A1
@@ -18,6 +19,7 @@ byte rst = 0;
 byte flag = 0;
 byte xCnt = 1;
 byte k = 0;
+int sum = 0;
 
 byte count;
 #define yPos 16
@@ -26,10 +28,11 @@ byte count;
 
 byte cnt = 1;
 byte slq = 0;
+byte pay = 0;
 
-String f[3];
-byte p[3];
-byte q[3];
+String f[3]; //food item
+byte p[3]; //price
+byte q[3]; //quantity
 byte y = 0;
 
 void setup() 
