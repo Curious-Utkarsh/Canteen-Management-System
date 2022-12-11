@@ -85,12 +85,14 @@ void coffee_tea()
         {
           button = ' ';
           sl = 1;
+          esp_data(); // send data for bill printing
           String f[3];
           byte p[3];
           byte q[3];
           y = 0;
           sum = 0;
           pay = 0;
+          
           break;
           
         }
@@ -129,6 +131,7 @@ void coffee_tea()
         u8g2.setFont(u8g2_font_t0_11_tr);
         u8g2.setCursor(2, 60);
         u8g2.print("--PLACE CARD TO PAY--");
+        scan();
         
         u8g2.sendBuffer();
       }

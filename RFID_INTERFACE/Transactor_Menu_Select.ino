@@ -1,5 +1,8 @@
 #include <U8g2lib.h>
 #include <SPI.h>
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(A8 , A9); //(rx, tx)
 
 //U8G2_ST7920_128X64_F_HW_SPI u8g2(U8G2_R0, /* CS=*/ 10, /* reset=*/ 8); // For Arduino Uno
 U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* CS=*/ 10, /* reset=*/ 8); // For Arduino Mega 2560
@@ -35,9 +38,14 @@ byte p[3]; //price
 byte q[3]; //quantity
 byte y = 0;
 
+String ID = "";
+String Elx_Paid = ""; //this feature is only present in coffee/tea right now...
+String dataPack = "";
+
 void setup() 
 {
   u8g2.begin(); 
+  mySerial.begin(9600);
   u8g2.setFont(u8g2_font_6x12_tr);
   pinMode(xPin, INPUT);
   pinMode(yPin, INPUT);
