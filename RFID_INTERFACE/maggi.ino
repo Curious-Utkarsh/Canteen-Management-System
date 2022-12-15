@@ -1,4 +1,4 @@
-void snacks()
+void maggi()
 {
   byte sl = 0;
   flag = 0;
@@ -12,15 +12,14 @@ void snacks()
     joyStick(); //cursor()
     u8g2.setFontMode(1);
     u8g2.setDrawColor(1);
-    u8g2.drawBox(4, ((yPos-2) + (flag*10)), 120, 11);
+    u8g2.drawBox(4, ((yPos) + (flag*10)), 120, 11);
     u8g2.setDrawColor(2);  
 
-    u8g2.setFont(u8g2_font_5x8_tr);
-    u8g2.drawStr(8, 22, "BISCUIT            10/-\n");
-    u8g2.drawStr(8, 32, "VEG-SANDWICH       35/-\n");
-    u8g2.drawStr(8, 42, "CHEESE-SANDWICH    40/-\n");
-    u8g2.drawStr(8, 52, "MASALA-SANDWICH    50/-\n");
-    u8g2.drawStr(8, 62, "Xtra CHEESE-S/W    55/-");
+    //u8g2.setFont(u8g2_font_5x8_tr);
+    u8g2.drawStr(8, 25, "MAGGI          25/-\n");
+    u8g2.drawStr(8, 35, "VEG-MAGGI      35/-\n");
+    u8g2.drawStr(8, 45, "CHEESE-MAGGI   40/-\n");
+   
     u8g2.sendBuffer();   
     joyStick();
     if(button == 's')
@@ -29,28 +28,18 @@ void snacks()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "BISCUIT";
-        p[y] = 10;
+        f[y] = "MAGGI";
+        p[y] = 25;
       }
       if(flag == 1)
       {
-        f[y] = "VEG-SW";
+        f[y] = "VEG-MG";
         p[y] = 35;
       }
       if(flag == 2)
       {
-        f[y] = "CHEESE-SW";
+        f[y] = "CHEESE-MG";
         p[y] = 40;
-      }
-      if(flag == 3)
-      {
-        f[y] = "MASALA-SW";
-        p[y] = 50;
-      }
-      if(flag == 4)
-      {
-        f[y] = "XTC-SW";
-        p[y] = 55;
       }
       delay(dt);
       while(slq == 0)

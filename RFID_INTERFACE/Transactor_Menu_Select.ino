@@ -9,7 +9,7 @@ U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* CS=*
 
 #define xPin A0
 #define yPin A1
-#define sPin 5
+#define sPin 4
 
 unsigned int xVal = 0;
 unsigned int yVal = 0;
@@ -18,6 +18,7 @@ bool sVal = LOW;
 byte check = 0;
 char button = ' ';
 byte rst = 0;
+bool t = false;
 
 byte flag = 0;
 byte xCnt = 1;
@@ -76,10 +77,10 @@ struct menu_state
 struct menu_entry_type menu_entry_list[] =
 {
   { u8g2_font_streamline_food_drink_t, 50, "Coffee/Tea"},
-  { u8g2_font_streamline_food_drink_t, 62, "Snacks"},
+  { u8g2_font_streamline_health_beauty_t, 54, "Maggi"},
   { u8g2_font_streamline_food_drink_t, 49, "Drinks"},
   { u8g2_font_streamline_food_drink_t, 56, "Ice-Cream"},
-  { u8g2_font_streamline_health_beauty_t, 54, "Thali"},
+  { u8g2_font_streamline_food_drink_t, 62, "Snacks"},
   { NULL, 0, NULL } 
 };
 
