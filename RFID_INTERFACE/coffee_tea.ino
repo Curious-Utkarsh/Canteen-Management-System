@@ -15,7 +15,7 @@ void coffee_tea()
     u8g2.drawBox(4, (yPos + (flag*10)), 120, 11);
     u8g2.setDrawColor(2);  
 
-    u8g2.drawStr(8, 25, "COFFEE         10/-\n");
+    u8g2.drawStr(8, 25, "COFFEE         15/-\n");
     u8g2.drawStr(8, 35, "TEA            10/-\n");
     u8g2.drawStr(8, 45, "MILK           10/-");
     u8g2.sendBuffer();   
@@ -27,7 +27,7 @@ void coffee_tea()
       if(flag == 0)
       {
         f[y] = "COFFEE";
-        p[y] = 10;
+        p[y] = 15;
       }
       if(flag == 1)
       {
@@ -123,7 +123,7 @@ void coffee_tea()
         }
         if(sum >= 100)
         {
-          u8g2.setCursor(55, 42);
+          u8g2.setCursor(70, 42);
           u8g2.print(s);
         }
         u8g2.setCursor(99, 42);

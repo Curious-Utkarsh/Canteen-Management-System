@@ -7,12 +7,12 @@ void choose_menu()
   }
   if(menu_entry_list[destination_state.position].name == "Snacks")
   {
-    count = 4;
+    count = 5;
     snacks();
   }
   if(menu_entry_list[destination_state.position].name == "Drinks")
   {
-    count = 4;
+    count = 3;
     drinks();
   }
   if(menu_entry_list[destination_state.position].name == "Ice-Cream")
@@ -20,9 +20,9 @@ void choose_menu()
     count = 3;
     ice();
   }
-  if(menu_entry_list[destination_state.position].name == "Thali")
+  if(menu_entry_list[destination_state.position].name == "Maggi")
   {
-    count = 2;
-    thali();
+    count = 3;
+    maggi();
   }
 }

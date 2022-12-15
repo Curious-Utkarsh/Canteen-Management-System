@@ -6,11 +6,11 @@ void checkout()
   u8g2.drawLine(5, 12, 122, 12);
   u8g2.setFont(u8g2_font_5x8_tr);
    
-  char ch_f[10]; // If error in printing comes then increase buffer size...
+  char ch_f[30]; // If error in printing comes then increase buffer size...
 
   for(byte i = 0; i<=y; i++)
   {
-    f[i].toCharArray(ch_f, 10);
+    f[i].toCharArray(ch_f, 30);
     u8g2.drawStr(8, (25+(i*10)), ch_f);
     u8g2.setCursor(82, (25+(i*10)));
     u8g2.print(p[i]);

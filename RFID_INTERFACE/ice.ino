@@ -16,8 +16,8 @@ void ice()
     u8g2.setDrawColor(2);  
 
     u8g2.drawStr(8, 25, "CHOCO-BAR      10/-\n");
-    u8g2.drawStr(8, 35, "CORNETTO       30/-\n");
-    u8g2.drawStr(8, 45, "CUP-CREAM      10/-\n");
+    u8g2.drawStr(8, 35, "CUP-CREAM      10/-\n");
+    u8g2.drawStr(8, 45, "CORNETTO       30/-");
     u8g2.sendBuffer();   
     joyStick();
     if(button == 's')

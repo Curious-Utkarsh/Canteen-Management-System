@@ -15,10 +15,10 @@ void drinks()
     u8g2.drawBox(4, (yPos + (flag*10)), 120, 11);
     u8g2.setDrawColor(2);  
 
-    u8g2.drawStr(8, 25, "PEPSI          20/-\n");
-    u8g2.drawStr(8, 35, "SPRITE         20/-\n");
-    u8g2.drawStr(8, 45, "TROPICANA      20/-\n");
-    u8g2.drawStr(8, 55, "MILK-SHAKE     30/-");
+    u8g2.drawStr(8, 25, "BISLERI        10/-\n");
+    u8g2.drawStr(8, 35, "COLD-DRINK     10/-\n");
+    u8g2.drawStr(8, 45, "COLD-DRINK     20/-");
+
     u8g2.sendBuffer();   
     joyStick();
     if(button == 's')
@@ -27,24 +27,20 @@ void drinks()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "PEPSI";
-        p[y] = 20;
+        f[y] = "BISLERI";
+        p[y] = 10;
       }
       if(flag == 1)
       {
-        f[y] = "SPRITE";
-        p[y] = 20;
+        f[y] = "COLD-DRINK";
+        p[y] = 10;
       }
       if(flag == 2)
       {
-        f[y] = "TROPICANA";
+        f[y] = "COLD-DRINK";
         p[y] = 20;
       }
-      if(flag == 3)
-      {
-        f[y] = "MILK-SHAKE";
-        p[y] = 30;
-      }
+
       delay(dt);
       while(slq == 0)
       {
