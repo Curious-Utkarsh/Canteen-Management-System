@@ -1,4 +1,4 @@
-void unpack(String dataPack)
+void unPack(String dataPack)
 {
   len = dataPack.length();
   y = "";
@@ -35,8 +35,9 @@ void unpack(String dataPack)
   Serial.println("ITEMS is : "+item);
   Serial.println("QTY is : "+qty);
   Serial.println("PRICE is : "+price);
-  Serial.println("AMT is :"+amount);
-  Serial.println("gTot is :"+gTotal);
+  Serial.println("AMT is : "+amount);
+  Serial.println("gTot is : "+gTotal);
+  cnt = y.toInt();
   unpack_more(y,item,sel);
   unpack_more(y,qty,sel+1);
   unpack_more(y,price,sel+2);
