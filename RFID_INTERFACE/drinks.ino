@@ -27,17 +27,17 @@ void drinks()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "BISLERI";
+        f[y] = "WATER ";
         p[y] = 10;
       }
       if(flag == 1)
       {
-        f[y] = "COLD-DRINK";
+        f[y] = "CLD-DR";
         p[y] = 10;
       }
       if(flag == 2)
       {
-        f[y] = "COLD-DRINK";
+        f[y] = "CLD-DR";
         p[y] = 20;
       }
 
@@ -87,6 +87,7 @@ void drinks()
         {
           button = ' ';
           sl = 1;
+          esp_data();
           String f[3];
           byte p[3];
           byte q[3];

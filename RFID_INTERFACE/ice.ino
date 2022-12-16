@@ -17,7 +17,7 @@ void ice()
 
     u8g2.drawStr(8, 25, "CHOCO-BAR      10/-\n");
     u8g2.drawStr(8, 35, "CUP-CREAM      10/-\n");
-    u8g2.drawStr(8, 45, "CORNETTO       30/-");
+    u8g2.drawStr(8, 45, "CONE           30/-");
     u8g2.sendBuffer();   
     joyStick();
     if(button == 's')
@@ -26,17 +26,17 @@ void ice()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "CHOCO-BAR";
+        f[y] = "CHO-BR";
         p[y] = 10;
       }
       if(flag == 1)
       {
-        f[y] = "CORNETTO";
+        f[y] = "CONE  ";
         p[y] = 30;
       }
       if(flag == 2)
       {
-        f[y] = "CUP-CREAM";
+        f[y] = "CUP-CM";
         p[y] = 10;
       }
       delay(dt);
@@ -85,6 +85,7 @@ void ice()
         {
           button = ' ';
           sl = 1;
+          esp_data();
           String f[3];
           byte p[3];
           byte q[3];

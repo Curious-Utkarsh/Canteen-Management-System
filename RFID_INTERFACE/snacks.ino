@@ -29,7 +29,7 @@ void snacks()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "BISCUIT";
+        f[y] = "BISCT ";
         p[y] = 10;
       }
       if(flag == 1)
@@ -39,12 +39,12 @@ void snacks()
       }
       if(flag == 2)
       {
-        f[y] = "CHEESE-SW";
+        f[y] = "CHS-SW";
         p[y] = 40;
       }
       if(flag == 3)
       {
-        f[y] = "MASALA-SW";
+        f[y] = "MSL-SW";
         p[y] = 50;
       }
       if(flag == 4)
@@ -98,6 +98,7 @@ void snacks()
         {
           button = ' ';
           sl = 1;
+          esp_data();
           String f[3];
           byte p[3];
           byte q[3];

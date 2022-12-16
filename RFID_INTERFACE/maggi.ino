@@ -28,7 +28,7 @@ void maggi()
       sl = 1;
       if(flag == 0)
       {
-        f[y] = "MAGGI";
+        f[y] = "MAGGI ";
         p[y] = 25;
       }
       if(flag == 1)
@@ -38,7 +38,7 @@ void maggi()
       }
       if(flag == 2)
       {
-        f[y] = "CHEESE-MG";
+        f[y] = "CHS-MG";
         p[y] = 40;
       }
       delay(dt);
@@ -87,6 +87,7 @@ void maggi()
         {
           button = ' ';
           sl = 1;
+          esp_data();
           String f[3];
           byte p[3];
           byte q[3];

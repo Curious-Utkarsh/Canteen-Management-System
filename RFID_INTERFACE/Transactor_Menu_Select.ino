@@ -18,7 +18,7 @@ bool sVal = LOW;
 byte check = 0;
 char button = ' ';
 byte rst = 0;
-bool t = false;
+byte r = 0;
 
 byte flag = 0;
 byte xCnt = 1;
@@ -39,12 +39,16 @@ byte p[3]; //price
 byte q[3]; //quantity
 byte y = 0;
 
-String ID = "";
-String Elx_Paid = ""; //this feature is only present in coffee/tea right now...
+String item = "";
+String qtyy = ""; //this feature is only present in coffee/tea right now...
+String price = "";
+String amt = "";
+String gTotal = "";
 String dataPack = "";
 
 void setup() 
 {
+  Serial.begin(9600);
   u8g2.begin(); 
   mySerial.begin(9600);
   u8g2.setFont(u8g2_font_6x12_tr);

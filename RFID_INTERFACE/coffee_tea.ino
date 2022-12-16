@@ -31,12 +31,12 @@ void coffee_tea()
       }
       if(flag == 1)
       {
-        f[y] = "TEA";
+        f[y] = "TEA   ";
         p[y] = 10;
       }
       if(flag == 2)
       {
-        f[y] = "MILK";
+        f[y] = "MILK  ";
         p[y] = 10;
       }
       delay(dt);
