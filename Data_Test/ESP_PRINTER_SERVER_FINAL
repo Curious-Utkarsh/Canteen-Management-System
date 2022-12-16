@@ -1,0 +1,103 @@
+#include <NTPClient.h>
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include <HTTPClient.h>
+#include <Adafruit_Thermal.h>
+#include <HardwareSerial.h>
+
+HardwareSerial SerialPort(1); // esp talk to arduino
+
+#define RXp1 4 // esp talk to arduino
+#define TXp1 2
+
+#define RXp2 16 // esp talk to printer
+#define TXp2 17 // for printer
+
+Adafruit_Thermal printer(&Serial2);      //for printer
+
+const char *ssid     = "172.0.0.0";
+const char *password = "8652070679";
+
+WiFiUDP ntpUDP;
+
+NTPClient timeClient(ntpUDP, "pool.ntp.org", 19800);
+
+String formattedTime = "";
+String hh = "";
+String mn = "";
+String date_time = "";
+String dd = "";
+String mm = "";
+String yyyy = "";
+String date = "";
+String Time = "";
+String today = "";
+
+String daysWeek[] = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"}; 
+
+String item = ""; // get from arduino
+String qty = ""; // get from arduino
+String price = ""; // get from arduino
+String amount = ""; // get from arduino
+String gTotal = ""; // get from arduino
+String y = ""; // get from arduino
+int n = 0; //get
+
+String dataPack = ""; // to unpack data got from arduino
+int len = 0;
+int cnt = 0;
+String items[3];
+String qtys[3];
+String prices[3];
+String amounts[3];
+
+String server = "http://maker.ifttt.com";
+String eventName = "Payment_Received";
+String IFTTT_Key = "oQUmBq9D5ZQjtHrwXj_cm4ZPMWq6zV9o1ba3POcCqsH";
+String IFTTTUrl="http://maker.ifttt.com/trigger/Payment_Received/with/key/oQUmBq9D5ZQjtHrwXj_cm4ZPMWq6zV9o1ba3POcCqsH";
+
+void setup()
+{
+  Serial.begin(115200);
+  Serial2.begin(9600, SERIAL_8N1, RXp2, TXp2); // Esp talks with printer
+  SerialPort.begin(9600, SERIAL_8N1, RXp1, TXp1); // Esp talks to arduino
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+
+  while ( WiFi.status() != WL_CONNECTED ) 
+  {
+    delay ( 500 );
+    Serial.print ( "." );
+  }
+  timeClient.begin();
+}
+
+void loop() 
+{
+  geTTime();
+  if(SerialPort.available() > 0)
+  {
+    dataPack = SerialPort.readString();
+    len = dataPack.length();
+    if(len>2)
+    {
+      Serial.println("...DATA_PACK Recieved...");
+      Serial.println();
+      unPack(dataPack);
+      printBill();
+      sendDataToSheet();
+      Serial.println();
+      
+      item = "";
+      qty = "";
+      price = "";
+      amount = "";
+      gTotal = "";
+      y = "";
+      dataPack = "";
+      n = 0;
+      len = 0;
+    }
+}
+delay(1000);
+}
