@@ -22,6 +22,11 @@ void maggi()
    
     u8g2.sendBuffer();   
     joyStick();
+    if(digitalRead(backPin) == LOW)
+    {
+      backState = 1;
+      break;
+    }
     if(button == 's')
     {
       button = ' ';
@@ -61,83 +66,86 @@ void maggi()
   }
   delay(dt);
   sl = 0;
-  
-  while(sl == 0)
-  {
-    joyStick();
-    if(button == 's' && slq == 0 && y<2)
-    {
-      button = ' ';
-      sl = 1;
-      y++;
-      xCnt = 1;
-      slq = 1;
-      break;
-    }
-    if(button == 's' && xCnt == 1)
-    {
-      button = ' ';
-      sl = 2;
-      while(digitalRead(sPin) == LOW)
-      {}
-      while(sl == 2)
-      {
-        joyStick();
-        if(button == 's')
-        {
-          button = ' ';
-          sl = 1;
-          esp_data();
-          String f[3];
-          byte p[3];
-          byte q[3];
-          y = 0;
-          sum = 0;
-          pay = 0;
-          break;
-          
-        }
-        u8g2.clearBuffer();
-        u8g2.setFont(u8g2_font_6x10_tr); 
-        u8g2.drawStr(32,10,"MAKE PAYMENT"); 
-        u8g2.drawLine(5, 12, 122, 12);
 
-        if(pay == 0)
-        {
-          for(byte i = 0; i<=y; i++)
-          {
-            sum = sum + (p[i]*q[i]);
-            pay = 1;
-          }
-        }
-        char s[10];
-        itoa(sum, s, 10);
-        u8g2.setFont( u8g2_font_courB12_tr);
-        u8g2.setCursor(2, 28);
-        u8g2.print("AMOUNT TO BE");
-        u8g2.setCursor(10, 42);
-        u8g2.print("PAID : ");
-        if(sum <= 99)
-        {
-          u8g2.setCursor(78, 42);
-          u8g2.print(s);
-        }
-        if(sum >= 100)
-        {
-          u8g2.setCursor(70, 42);
-          u8g2.print(s);
-        }
-        u8g2.setCursor(99, 42);
-        u8g2.print("/-");
-        u8g2.setFont(u8g2_font_t0_11_tr);
-        u8g2.setCursor(2, 60);
-        u8g2.print("--PLACE CARD TO PAY--");
-        
-        u8g2.sendBuffer();
-      }
+  if(backState == 0)
+  {
+    while(sl == 0)
+    {
+      joyStick();
+      if(button == 's' && slq == 0 && y<2)
+      {
+        button = ' ';
+        sl = 1;
+        y++;
+        xCnt = 1;
+        slq = 1;
         break;
       }
-    checkout();
+      if(button == 's' && xCnt == 1)
+      {
+        button = ' ';
+        sl = 2;
+        while(digitalRead(sPin) == LOW)
+        {}
+        while(sl == 2)
+        {
+          u8g2.clearBuffer();
+          u8g2.setFont(u8g2_font_6x10_tr); 
+          u8g2.drawStr(32,10,"MAKE PAYMENT"); 
+          u8g2.drawLine(5, 12, 122, 12);
+  
+          if(pay == 0)
+          {
+            for(byte i = 0; i<=y; i++)
+            {
+              sum = sum + (p[i]*q[i]);
+              pay = 1;
+            }
+          }
+          char s[10];
+          itoa(sum, s, 10);
+          u8g2.setFont( u8g2_font_courB12_tr);
+          u8g2.setCursor(2, 28);
+          u8g2.print("AMOUNT TO BE");
+          u8g2.setCursor(10, 42);
+          u8g2.print("PAID : ");
+          if(sum <= 99)
+          {
+            u8g2.setCursor(78, 42);
+            u8g2.print(s);
+          }
+          if(sum >= 100)
+          {
+            u8g2.setCursor(70, 42);
+            u8g2.print(s);
+          }
+          u8g2.setCursor(99, 42);
+          u8g2.print("/-");
+          u8g2.setFont(u8g2_font_t0_11_tr);
+          u8g2.setCursor(2, 60);
+          u8g2.print("--PLACE CARD TO PAY--");
+          
+          u8g2.sendBuffer();
+
+          detectCard();
+          scan(-1);
+          if(button == 's')
+          {
+            button = ' ';
+            sl = 1;
+            String f[3];
+            byte p[3];
+            byte q[3];
+            y = 0;
+            sum = 0;
+            pay = 0;
+            break;
+          }
+        }
+          break;
+        }
+      checkout();
+    }
   }
   delay(dt);
 
@@ -145,4 +153,5 @@ void maggi()
   slq = 0;
   flag = 0;
   cnt = 1;
+  backState = 0;
 }

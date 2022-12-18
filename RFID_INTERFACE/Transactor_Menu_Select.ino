@@ -1,6 +1,14 @@
 #include <U8g2lib.h>
 #include <SPI.h>
 #include <SoftwareSerial.h>
+#include <MFRC522.h>
+
+#define RST_PIN         5           // Configurable, see typical pin layout above
+#define SS_PIN          53          // Configurable, see typical pin layout above
+
+MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
+
+MFRC522::MIFARE_Key key;
 
 SoftwareSerial mySerial(A8 , A9); //(rx, tx)
 
@@ -10,6 +18,10 @@ U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R0, /* clock=*/ 13, /* data=*/ 11, /* CS=*
 #define xPin A0
 #define yPin A1
 #define sPin 4
+#define backPin 3
+#define cardTime 1000
+
+byte backState = 0;
 
 unsigned int xVal = 0;
 unsigned int yVal = 0;
@@ -38,6 +50,7 @@ String f[3]; //food item
 byte p[3]; //price
 byte q[3]; //quantity
 byte y = 0;
+byte z = 0;
 
 String item = "";
 String qtyy = ""; //this feature is only present in coffee/tea right now...
@@ -48,7 +61,9 @@ String dataPack = "";
 
 void setup() 
 {
-  Serial.begin(9600);
+  //Serial.begin(9600);
+  SPI.begin();
+  mfrc522.PCD_Init();
   u8g2.begin(); 
   mySerial.begin(9600);
   u8g2.setFont(u8g2_font_6x12_tr);
@@ -56,6 +71,7 @@ void setup()
   pinMode(yPin, INPUT);
   pinMode(sPin, INPUT);
   digitalWrite(sPin, HIGH);
+  digitalWrite(backPin, HIGH);
 }
 
 struct menu_entry_type
