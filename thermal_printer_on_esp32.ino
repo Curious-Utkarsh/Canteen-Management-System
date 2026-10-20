@@ -2,14 +2,15 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #include "Adafruit_Thermal.h"
+#include "secrets.h"  // copy secrets.h.example to secrets.h and fill in your values
 
 #define RXp2 16
 #define TXp2 17
 
 Adafruit_Thermal printer(&Serial2);     
 
-const char *ssid     = "You2.4";
-const char *password = "12341234";
+const char *ssid     = WIFI_SSID;
+const char *password = WIFI_PASSWORD;
 
 WiFiUDP ntpUDP;
 

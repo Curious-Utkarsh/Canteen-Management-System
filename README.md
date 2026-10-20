@@ -28,7 +28,7 @@ My college canteen had such weak mobile signal that digital payments kept failin
 | `ESP32_GOOGLE_SPREADSHEET.ino`, `RecvSMS.ino` | Transaction logging and SMS |
 | `Libraries Needed/` | LiquidCrystal_I2C library used |
 
-Wi-Fi credentials go in the sketches before flashing.
+Before flashing, copy `secrets.h.example` to `secrets.h` next to the sketch and fill in your Wi-Fi name, password and IFTTT key; `secrets.h` is git-ignored.
 
 ## Related
 

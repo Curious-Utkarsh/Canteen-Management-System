@@ -1,13 +1,14 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include "secrets.h"  // copy secrets.h.example to secrets.h and fill in your values
 
-const char * ssid = "172.0.0.0";
-const char * password = "8652070679";
+const char * ssid = WIFI_SSID;
+const char * password = WIFI_PASSWORD;
 
 String server = "http://maker.ifttt.com";
 String eventName = "Serial_Data";
-String IFTTT_Key = "Ebs08WehpN9Vqk20Kk4sg";
-String IFTTTUrl="http://maker.ifttt.com/trigger/Serial_Data/with/key/Ebs08WehpN9Vqk20Kk4sg";
+String IFTTT_Key = IFTTT_KEY;
+String IFTTTUrl="http://maker.ifttt.com/trigger/Serial_Data/with/key/" IFTTT_KEY;
 
 String Payment = "";
 String Name = "";
