@@ -9,7 +9,7 @@ My college canteen had such weak mobile signal that digital payments kept failin
 
 [![NFC-based smart ordering system](https://img.youtube.com/vi/iQ-vjzbL71g/hqdefault.jpg)](https://youtu.be/iQ-vjzbL71g)
 
-<sub>The later Q'Less Pro kiosk — see [Q-Less_Final_Code](https://github.com/Curious-Utkarsh/Q-Less_Final_Code)</sub>
+<sub>The later Q'Less Pro kiosk — see [qless-pro-ordering-kiosk](https://github.com/Curious-Utkarsh/qless-pro-ordering-kiosk)</sub>
 
 ## How it works
 
@@ -32,7 +32,7 @@ Before flashing, copy `secrets.h.example` to `secrets.h` next to the sketch and 
 
 ## Related
 
-[Q'Less Pro kiosk](https://github.com/Curious-Utkarsh/Q-Less_Final_Code) · [Spencer Pro 370 pill dispenser](https://github.com/Curious-Utkarsh/Pill-Dispenser)
+[Q'Less Pro kiosk](https://github.com/Curious-Utkarsh/qless-pro-ordering-kiosk) · [Spencer Pro 370 pill dispenser](https://github.com/Curious-Utkarsh/spencer-pro-pill-dispenser)
 
 ---
 [Kumar Utkarsh](https://github.com/Curious-Utkarsh) · [LinkedIn](https://www.linkedin.com/in/kumar-utkarsh-124aab227/) · [Portfolio of builds](https://www.mechamindlabs.com/projects)
