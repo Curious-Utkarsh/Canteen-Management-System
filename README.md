@@ -9,6 +9,8 @@ My college canteen had such weak mobile signal that digital payments kept failin
 
 [![NFC-based smart ordering system](https://img.youtube.com/vi/iQ-vjzbL71g/hqdefault.jpg)](https://youtu.be/iQ-vjzbL71g)
 
+Playlist: [Engineering Builds (2022–2026)](https://www.youtube.com/playlist?list=PLPJ4HpDr6h6A)
+
 <sub>The later Q'Less Pro kiosk — see [qless-pro-ordering-kiosk](https://github.com/Curious-Utkarsh/qless-pro-ordering-kiosk)</sub>
 
 ## How it works
